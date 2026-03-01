@@ -591,11 +591,6 @@ class BYTETracker:
             # Restore kalman_filter reference for all loaded tracks
             for track in self.tracked_stracks + self.lost_stracks:
                 track.kalman_filter = self.kalman_filter
-
-            # Update frame_id for lost tracks to give them grace period
-            # (end_frame is a property, so we update frame_id instead)
-            for track in self.lost_stracks:
-                track.frame_id = self.frame_id
                 
             # Restore the ID counter
             next_id = state.get('next_id', 1)
